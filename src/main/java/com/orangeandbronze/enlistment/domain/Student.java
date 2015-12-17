@@ -26,6 +26,15 @@ public class Student {
 		return new ArrayList<>(semesterEnlistment);  //defensive copy
 	}
 	
+	public boolean wasMemberOf(Section section){
+		for (SemesterEnlistment enlistments : semesterEnlistment){
+			for (Section sectionFromEnlistment : enlistments.getSections()){
+				if (section == sectionFromEnlistment) return true;
+			}
+		}
+		return false;
+	}
+	
 	@Override
 	public String toString() {
 		return ""+studentNumber;

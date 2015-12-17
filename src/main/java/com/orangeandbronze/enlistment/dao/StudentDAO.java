@@ -1,5 +1,8 @@
 package com.orangeandbronze.enlistment.dao;
 
+import com.orangeandbronze.enlistment.domain.Student;
+
 public interface StudentDAO {
-	// TODO: Add method signatures
+	Student findByStudentId(int studentId);
+	void save(Student student);
 }

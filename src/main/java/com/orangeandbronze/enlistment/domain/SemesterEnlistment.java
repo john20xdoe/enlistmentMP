@@ -12,6 +12,10 @@ public class SemesterEnlistment {
 		notNull(semester);
 		this.semester=semester;
 	}
+	
+	public Collection<Section> getSections(){
+		return new ArrayList<>(sections);  //defensive copy
+	}
 
 	public void enlistSection(Section otherSection){
 		
