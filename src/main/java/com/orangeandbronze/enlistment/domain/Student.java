@@ -8,8 +8,10 @@ import static org.apache.commons.lang3.Validate.*;
 public class Student {
 	private final Integer studentNumber;
 	private final Collection<SemesterEnlistment> semesterEnlistment = new HashSet<>();  //we use HashSet to enforce uniqueness of sections
+	public final static Student NONE = new Student(0); //for null pattern matching
 	
 	public Student(Integer studentNumber){
+		notNull(studentNumber);
 		if (studentNumber < 0){
 			throw new IllegalArgumentException("studentNumber cannot be negative, was: " + studentNumber);
 		}
@@ -23,10 +25,10 @@ public class Student {
 	public Collection<SemesterEnlistment> getSemesterEnlistment() {
 		return new ArrayList<>(semesterEnlistment);  //defensive copy
 	}
-
+	
 	@Override
 	public String toString() {
-		return "Std# " + studentNumber;
+		return ""+studentNumber;
 	}
 
 	@Override

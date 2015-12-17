@@ -9,6 +9,8 @@ public class SemesterEnlistment {
 	private  Collection<Section> sections = new HashSet<>();
 		
 	public SemesterEnlistment(Collection<Section>sections, Semester semester) {
+		notNull(sections);
+		notNull(semester);
 		this.sections = sections;
 		this.semester=semester;
 	}
