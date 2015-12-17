@@ -70,6 +70,12 @@ public class Section {
 		} //TODO add else ? should we throw Exception if not the same sem
 	}
 
+	public void isRoomFull() {
+		if (room.isAtMax(studentCount)) {
+			throw new RoomFullException("Section with id: " + sectionId + "is already full");
+		}
+	}
+	
 	@Override
 	public String toString() {
 		return sectionId;
