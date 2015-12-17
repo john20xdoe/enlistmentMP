@@ -20,11 +20,12 @@ public class SemesterEnlistmentTest {
 	
 	@Test(expected = PrerequisiteSubjectNotFoundException.class)
 	public void testNoPrerequsiteFoundInSemEnlist(){
-		Schedule schedule = new Schedule(Days.MTH, Period.H0830);
+		Schedule schedule1 = new Schedule(Days.MTH, Period.H0830);
+		Schedule schedule2 = new Schedule(Days.TF, Period.H0830);
 		Room room = new Room("Room1", 5);
 		Semester semester1 = new Semester(2015, SemType.FIRST);
-		Section section1 = new Section("AAA111",semester1,schedule,room,Subject.ENG202);
-		Section section2 = new Section("AAA111",semester1,schedule,room,Subject.SCI101);
+		Section section1 = new Section("AAA111",semester1,schedule1,room,Subject.ENG202);
+		Section section2 = new Section("AAA111",semester1,schedule2,room,Subject.SCI101);
 		SemesterEnlistment semesterEnlistment = new SemesterEnlistment(semester1);
 		semesterEnlistment.enlistSection(section2);
 		semesterEnlistment.enlistSection(section1);
@@ -32,11 +33,12 @@ public class SemesterEnlistmentTest {
 	
 	@Test(expected = PrerequisiteSubjectNotFoundException.class)
 	public void testSuccessAddSectionToSemEnlist(){
-		Schedule schedule = new Schedule(Days.MTH, Period.H0830);
+		Schedule schedule1 = new Schedule(Days.MTH, Period.H0830);
+		Schedule schedule2 = new Schedule(Days.TF, Period.H0830);
 		Room room = new Room("Room1", 5);
 		Semester semester1 = new Semester(2015, SemType.FIRST);
-		Section section1 = new Section("AAA111",semester1,schedule,room,Subject.ENG202);
-		Section section2 = new Section("AAA222",semester1,schedule,room,Subject.ENG101);
+		Section section1 = new Section("AAA111",semester1,schedule1,room,Subject.ENG202);
+		Section section2 = new Section("AAA222",semester1,schedule2,room,Subject.ENG101);
 		SemesterEnlistment semesterEnlistment = new SemesterEnlistment(semester1);
 		semesterEnlistment.enlistSection(section2);
 		semesterEnlistment.enlistSection(section1);
