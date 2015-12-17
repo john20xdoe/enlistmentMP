@@ -1,18 +1,19 @@
 package com.orangeandbronze.enlistment.domain;
 
-import static org.apache.commons.lang3.Validate.*;
-
-public class Subject {
-	private final String subjectCode;
-	private Subject prerequisiteSubjectCode;
+public enum Subject {
 	
-	private static final Subject NONE = new Subject("",null); //null pattern match
+	ENG101,
+	ENG202(ENG101);
 	
-	public Subject(String subjectCode, Subject prerequisiteSubjectCode){
-		notBlank(subjectCode);
-		this.prerequisiteSubjectCode = (prerequisiteSubjectCode != null) ? prerequisiteSubjectCode : Subject.NONE; 
-		this.subjectCode = subjectCode;
+	private Subject prerequisite;
+	
+	private Subject(){}
+	
+	private Subject(Subject subject){
+		this.prerequisite = subject;
 	}
 	
-	
+	public Subject getPrerequisite(){
+		return prerequisite;
+	}
 }
