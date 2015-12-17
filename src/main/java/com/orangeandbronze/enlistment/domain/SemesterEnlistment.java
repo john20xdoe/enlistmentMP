@@ -26,7 +26,6 @@ public class SemesterEnlistment {
 		}
 		
 		prereqExists(otherSection);
-		
 		this.sections.add(otherSection);
 		
 	}
