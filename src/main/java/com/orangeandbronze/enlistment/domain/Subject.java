@@ -18,4 +18,11 @@ public enum Subject {
 	public Subject getPrerequisite(){
 		return prerequisite;
 	}
+	
+	public boolean hasPrerequisite(){
+		if(prerequisite != null){
+			return true;
+		}
+		return false;
+	}
 }

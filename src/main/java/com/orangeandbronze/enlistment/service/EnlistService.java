@@ -1,7 +1,12 @@
 package com.orangeandbronze.enlistment.service;
 
-import com.orangeandbronze.enlistment.dao.*;
-import com.orangeandbronze.enlistment.domain.*;
+import java.util.Collection;
+
+import com.orangeandbronze.enlistment.dao.SectionDAO;
+import com.orangeandbronze.enlistment.dao.StudentDAO;
+import com.orangeandbronze.enlistment.domain.Section;
+import com.orangeandbronze.enlistment.domain.SemesterEnlistment;
+import com.orangeandbronze.enlistment.domain.Student;
 
 public class EnlistService {
 	
@@ -10,9 +15,12 @@ public class EnlistService {
 	
 	public void enlist(int studentNo, String sectionId) {
 		// TODO: Implement this method
+		Section section = sectionDao.findBySectionId(sectionId);
+		Student student = studentDao.findByStudentId(studentNo);
 		
-		
-		//TODO student may not enlist in a section if the subject of the section has a prerequisite that the student has not taken in any previous semester.
+		Collection<SemesterEnlistment> semesterEnlistment = student.getSemesterEnlistment();
+		//semesterEnlistment.add(); 
+		studentDao.save(student);
 	}
 
 	public void setSectionDao(SectionDAO sectionDao) {
