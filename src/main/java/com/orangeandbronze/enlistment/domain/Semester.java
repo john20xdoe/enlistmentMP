@@ -1,5 +1,5 @@
 package com.orangeandbronze.enlistment.domain;
 
-public class Semester {
-
+public enum Semester {
+	FIRST,SECOND
 }
