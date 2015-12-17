@@ -67,7 +67,7 @@ public class Section {
 				if(this.schedule.equals(section.schedule)){
 					throw new ScheduleConflictException("Schedule for " + this + " ["+schedule+"] conflicts with " + section + "[" +section.schedule+ "]");
 				}
-		} //TODO add else ? should we throw Exception if not the same sem
+		} //TODO add else ? should we throw Exception if not the same sem; nachecheck na kasi before icall to
 	}
 
 	public void isRoomFull() {
