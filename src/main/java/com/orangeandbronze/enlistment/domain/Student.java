@@ -1,6 +1,8 @@
 package com.orangeandbronze.enlistment.domain;
 
 import java.util.*;
+
+
 import static org.apache.commons.lang3.Validate.*;
 
 public class Student {
@@ -12,6 +14,10 @@ public class Student {
 			throw new IllegalArgumentException("studentNumber cannot be negative, was: " + studentNumber);
 		}
 		this.studentNumber = studentNumber;
+	}
+	
+	public void enlist(Section newSection){
+		notNull(newSection);
 	}
 	
 	public Collection<SemesterEnlistment> getSemesterEnlistment() {
