@@ -13,7 +13,11 @@ public class Section {
 	private final Subject subject;
 	private int studentCount = 0;
 	
-	public Section(String sectionId, Semester semester, Schedule schedule, Room room, Subject subject) {
+	public Section(String sectionId, 
+			Semester semester, 
+			Schedule schedule, 
+			Room room, 
+			Subject subject) {
 		notBlank(sectionId);
 		notNull(schedule);
 		
@@ -28,7 +32,7 @@ public class Section {
 		
 	}
 	
-	public boolean hasSameSection(Section otherSection){
+	public boolean hasSameSubject(Section otherSection){
 		if(this.subject.equals(otherSection.subject)){
 			return true;
 		}
@@ -47,12 +51,12 @@ public class Section {
 		return this.subject.getPrerequisite();
 	}
 	
-	public boolean hasSameSubject(Section otherSection){
+	/*public boolean hasSameSubject(Section otherSection){
 		if(this.subject.equals(otherSection.subject)){
 			return true;
 		}
 		return false;
-	}
+	}*/
 	
 	//TODO refactor to support semesters?
 	public void checkConflict(Section section){
