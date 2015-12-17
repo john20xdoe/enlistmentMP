@@ -1,4 +1,5 @@
 package com.orangeandbronze.enlistment.domain;
+import static org.apache.commons.lang3.Validate.*;
 
 public class Schedule {
 
@@ -6,6 +7,8 @@ public class Schedule {
 	private final Period period;
 	
 	public Schedule(Days days, Period period) {
+		notNull(days);
+		notNull(period);
 		this.days = days;
 		this.period = period;
 	}

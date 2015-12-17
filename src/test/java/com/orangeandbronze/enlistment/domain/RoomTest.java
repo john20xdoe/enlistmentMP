@@ -1,4 +1,4 @@
-package com.orangeandbronze.enlistment.service;
+package com.orangeandbronze.enlistment.domain;
 
 import static org.junit.Assert.*;
 
