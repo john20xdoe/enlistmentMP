@@ -27,7 +27,12 @@ public class Student {
 	}
 	
 	public boolean wasMemberOf(Section section){
-		for (SemesterEnlistment enlistments : semesterEnlistment)
+		for (SemesterEnlistment enlistments : semesterEnlistment){
+			for (Section sectionFromEnlistment : enlistments.getSections()){
+				if (section == sectionFromEnlistment) return true;
+			}
+		}
+		return false;
 	}
 	
 	@Override
