@@ -7,8 +7,10 @@ import java.util.*;
 public class SemesterEnlistment {
 	private final Semester semester;
 	private  Collection<Section> sections = new HashSet<>();
-	
+		
 	public SemesterEnlistment(Collection<Section>sections, Semester semester) {
+		notNull(sections);
+		notNull(semester);
 		this.sections = sections;
 		this.semester=semester;
 	}

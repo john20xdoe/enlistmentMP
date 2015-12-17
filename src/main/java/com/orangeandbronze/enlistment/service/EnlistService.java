@@ -15,7 +15,6 @@ public class EnlistService {
 	
 	public void enlist(int studentNo, String sectionId) {
 		// TODO: Implement this method
-		
 		Section section = sectionDao.findBySectionId(sectionId);
 		Student student = studentDao.findByStudentId(studentNo);
 		

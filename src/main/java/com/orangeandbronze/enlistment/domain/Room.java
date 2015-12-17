@@ -6,30 +6,35 @@ import static org.apache.commons.lang3.Validate.*;
 
 public class Room {
 
-	private final String name;
+	private final String roomName;
 	private final int maxCapacity;
 	
 	public Room(String name, int maxCapacity){
 		notNull(maxCapacity);
-		
+		if (maxCapacity <= 0){
+			throw new IllegalArgumentException("maxCapacity should a positive non-zero integer, was "+ maxCapacity);
+		}
 		if(!StringUtils.isAlphanumeric(name)){
 			throw new IllegalArgumentException("Room Name must be alphanumeric, was "+name);
 		};
 		
-		this.name = name;
+		this.roomName = name;
 		this.maxCapacity = maxCapacity;
+	}
+	public boolean isAtMax(int currentOccupants){
+		return currentOccupants >= maxCapacity; 
 	}
 
 	@Override
 	public String toString() {
-		return "Room [name=" + name + ", maxCapacity=" + maxCapacity + "]";
+		return "RoomName=" + roomName ;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((roomName == null) ? 0 : roomName.hashCode());
 		return result;
 	}
 
@@ -43,10 +48,10 @@ public class Room {
 		if (getClass() != obj.getClass())
 			return false;
 		Room other = (Room) obj;
-		if (name == null) {
-			if (other.name != null)
+		if (roomName == null) {
+			if (other.roomName != null)
 				return false;
-		} else if (!name.equals(other.name))
+		} else if (!roomName.equals(other.roomName))
 			return false;
 		return true;
 	}

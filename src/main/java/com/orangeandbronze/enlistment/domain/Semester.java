@@ -1,10 +1,17 @@
 package com.orangeandbronze.enlistment.domain;
 
+import static org.apache.commons.lang3.Validate.*;
+
 public class  Semester {
 	private final Integer academicYear;
 	private final SemType sem;
 	
 	public Semester(Integer academicYear, SemType sem){
+		notNull(academicYear);
+		notNull(sem);
+		if (academicYear > 9999) {
+			throw new IllegalArgumentException("academicYear should be 4 digits or less, was "+ academicYear);
+		}
 		this.academicYear = academicYear;
 		this.sem = sem;
 	}
