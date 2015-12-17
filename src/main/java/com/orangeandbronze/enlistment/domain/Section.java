@@ -65,6 +65,12 @@ public class Section {
 		}
 	}
 
+	public void isRoomFull() {
+		if (room.isAtMax(studentCount)) {
+			throw new RoomFullException("Section with id: " + sectionId + "is already full");
+		}
+	}
+	
 	@Override
 	public String toString() {
 		return sectionId;
