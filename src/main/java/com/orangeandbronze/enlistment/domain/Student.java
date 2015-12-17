@@ -18,8 +18,9 @@ public class Student {
 		this.studentNumber = studentNumber;
 	}
 	
-	public void enlist(Section newSection){
-		notNull(newSection);
+	public void enlist(SemesterEnlistment newSemesterEnlistment){
+		notNull(newSemesterEnlistment);
+		this.semesterEnlistment.add(newSemesterEnlistment);
 	}
 	
 	public Collection<SemesterEnlistment> getSemesterEnlistment() {

@@ -31,6 +31,5 @@ public class StudentTest {
 		Student student = new Student(867);
 		assertEquals("867",student.toString());
 	}
-	
 
 }
