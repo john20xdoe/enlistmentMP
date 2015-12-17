@@ -11,6 +11,9 @@ public class Room {
 	
 	public Room(String name, int maxCapacity){
 		notNull(maxCapacity);
+		if (maxCapacity <= 0){
+			throw new IllegalArgumentException("maxCapacity should a positive non-zero integer, was "+ maxCapacity);
+		}
 		if(!StringUtils.isAlphanumeric(name)){
 			throw new IllegalArgumentException("Room Name must be alphanumeric, was "+name);
 		};

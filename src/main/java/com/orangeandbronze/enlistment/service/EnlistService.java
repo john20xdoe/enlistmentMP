@@ -11,6 +11,7 @@ public class EnlistService {
 	public void enlist(int studentNo, String sectionId) {
 		// TODO: Implement this method
 		
+		
 		//TODO student may not enlist in a section if the subject of the section has a prerequisite that the student has not taken in any previous semester.
 	}
 
