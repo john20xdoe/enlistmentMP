@@ -1,26 +1,28 @@
 package com.orangeandbronze.enlistment.domain;
 
+
 import static org.apache.commons.lang3.Validate.*;
+import java.util.*;
 
 public class SemesterEnlistment {
-	private final Section section;
 	private final Semester semester;
+	private  Collection<Section> sections = new HashSet<>();
 	
-	public SemesterEnlistment(Section section, Semester semester) {
-		this.section = section;
+	public SemesterEnlistment(Collection<Section>sections, Semester semester) {
+		this.sections = sections;
 		this.semester=semester;
 	}
 
 	@Override
 	public String toString() {
-		return semester + " " + section ;
+		return semester + " " + sections ;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((section == null) ? 0 : section.hashCode());
+		result = prime * result + ((sections == null) ? 0 : sections.hashCode());
 		result = prime * result + ((semester == null) ? 0 : semester.hashCode());
 		return result;
 	}
@@ -34,10 +36,10 @@ public class SemesterEnlistment {
 		if (getClass() != obj.getClass())
 			return false;
 		SemesterEnlistment other = (SemesterEnlistment) obj;
-		if (section == null) {
-			if (other.section != null)
+		if (sections == null) {
+			if (other.sections != null)
 				return false;
-		} else if (!section.equals(other.section))
+		} else if (!sections.equals(other.sections))
 			return false;
 		if (semester == null) {
 			if (other.semester != null)
