@@ -32,10 +32,8 @@ public class SemesterEnlistment {
 	}
 	
 	private void prereqExists(Section otherSection){
-		boolean prereqExists = false;
 		for(Section currentSection : this.sections){
-			if(currentSection.hasSameSubject(otherSection) ){
-				prereqExists = true;
+			if(!currentSection.hasSameSubject(otherSection) ){
 				throw new PrerequisiteSubjectNotFoundException("Cannot enlist section "+otherSection+" because prequisite subject is not found ");
 			}
 		}
