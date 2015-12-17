@@ -25,27 +25,20 @@ public class SemesterEnlistment {
 			}
 		}
 		
+		prereqExists(otherSection);
 		
-		boolean isValid = true;
+		this.sections.add(otherSection);
 		
-		if(otherSection.getPrereqSubject() != null){
-			isValid = prereqExists(otherSection);
-		}
-		
-		if(isValid){
-			this.sections.add(otherSection);
-		}
 	}
 	
-	private boolean prereqExists(Section otherSection){
+	private void prereqExists(Section otherSection){
 		boolean prereqExists = false;
 		for(Section currentSection : this.sections){
 			if(currentSection.hasSameSubject(otherSection) ){
 				prereqExists = true;
-				break;
+				throw new PrerequisiteSubjectNotFoundException("Cannot enlist section "+otherSection+" because prequisite subject is not found ");
 			}
 		}
-		return prereqExists;
 	}
 	
 	@Override
