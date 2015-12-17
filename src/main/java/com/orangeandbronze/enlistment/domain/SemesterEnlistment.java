@@ -8,17 +8,15 @@ public class SemesterEnlistment {
 	private final Semester semester;
 	private  Collection<Section> sections = new HashSet<>();
 		
-	public SemesterEnlistment(Collection<Section>sections, Semester semester) {
-		notNull(sections);
+	public SemesterEnlistment(Semester semester) {
 		notNull(semester);
-		this.sections = sections;
 		this.semester=semester;
 	}
 
 	public void enlistSection(Section otherSection){
 		
 		for(Section currentSection : this.sections){
-			if(currentSection.hasSameSection(otherSection)){
+			if(currentSection.hasSameSubject((otherSection))){
 				throw new DuplicateSectionException("Cannot enlist section "+otherSection+" because an existing section with the same subject already enlisted");
 			}
 		}
@@ -37,14 +35,12 @@ public class SemesterEnlistment {
 	
 	private boolean prereqExists(Section otherSection){
 		boolean prereqExists = false;
-//		if(otherSection.getPrereqSubject() != null){
-			for(Section currentSection : this.sections){
-				if(currentSection.hasSameSubject(otherSection) ){
-					prereqExists = true;
-					break;
-				}
+		for(Section currentSection : this.sections){
+			if(currentSection.hasSameSubject(otherSection) ){
+				prereqExists = true;
+				break;
 			}
-//		}
+		}
 		return prereqExists;
 	}
 	
