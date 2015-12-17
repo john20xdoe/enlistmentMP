@@ -7,10 +7,13 @@ import org.apache.commons.lang3.StringUtils;
 
 public class Section {
 	private final String sectionId;
+	private final Semester semester;
 	private final Schedule schedule;
-	private int studentCount;
+	private final Room room;
+	private final Subject subject;
+	private int studentCount = 0;
 	
-	public Section(String sectionId, Schedule schedule) {
+	public Section(String sectionId, Semester semester, Schedule schedule, Room room, Subject subject) {
 		notBlank(sectionId);
 		notNull(schedule);
 		
@@ -18,7 +21,11 @@ public class Section {
 			throw new IllegalArgumentException("sectionId must be alphanumeric, was "+sectionId);
 		}
 		this.sectionId = sectionId;
+		this.semester = semester;
 		this.schedule = schedule;
+		this.room = room;
+		this.subject = subject;
+		
 	}
 	
 	public void checkConflict(Section section){
