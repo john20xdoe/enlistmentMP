@@ -20,6 +20,10 @@ public class Student {
 		return new ArrayList<>(semesterEnlistment);  //defensive copy
 	}
 	
+	public boolean wasMemberOf(Section section){
+		for (SemesterEnlistment enlistments : semesterEnlistment)
+	}
+	
 	@Override
 	public String toString() {
 		return ""+studentNumber;

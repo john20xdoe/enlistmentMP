@@ -14,6 +14,10 @@ public class SemesterEnlistment {
 		this.sections = sections;
 		this.semester=semester;
 	}
+	
+	public Collection<Section> getSections(){
+		return new ArrayList<>(sections);  //defensive copy
+	}
 
 	@Override
 	public String toString() {
