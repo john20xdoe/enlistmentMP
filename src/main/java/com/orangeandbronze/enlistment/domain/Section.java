@@ -54,6 +54,7 @@ public class Section {
 		return false;
 	}
 	
+	//TODO refactor to support semesters?
 	public void checkConflict(Section section){
 		if(this.schedule.equals(section.schedule)){
 			throw new ScheduleConflictException("Attempt to enlist section with conflict");
