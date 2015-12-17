@@ -67,6 +67,6 @@ public class Section {
 
 	@Override
 	public String toString() {
-		return "sectionId=" + sectionId;
+		return sectionId;
 	}
 	}
