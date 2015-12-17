@@ -32,6 +32,10 @@ public class Section {
 		
 	}
 	
+	public Semester getSemester(){
+		return semester;
+	}
+	
 	public boolean hasSameSubject(Section otherSection){
 		if(this.subject.equals(otherSection.subject)){
 			return true;
@@ -57,12 +61,13 @@ public class Section {
 		}
 		return false;
 	}*/
-	
-	//TODO refactor to support semesters?
-	public void checkConflict(Section section){
-		if(this.schedule.equals(section.schedule)){
-			throw new ScheduleConflictException("Attempt to enlist section with conflict");
-		}
+
+	public void checkScheduleConflict(Section section){
+		if (this.semester == section.getSemester()){
+				if(this.schedule.equals(section.schedule)){
+					throw new ScheduleConflictException("Schedule for " + this + " ["+schedule+"] conflicts with " + section + "[" +section.schedule+ "]");
+				}
+		} //TODO add else ? should we throw Exception if not the same sem
 	}
 
 	@Override

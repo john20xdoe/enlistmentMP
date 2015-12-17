@@ -7,7 +7,9 @@ import java.util.*;
 public class SemesterEnlistment {
 	private final Semester semester;
 	private  Collection<Section> sections = new HashSet<>();
-		
+	
+	// TODO validation of taking a subject together with its prereq
+	
 	public SemesterEnlistment(Semester semester) {
 		notNull(semester);
 		this.semester=semester;
@@ -18,19 +20,23 @@ public class SemesterEnlistment {
 	}
 
 	public void enlistSection(Section otherSection){
-		
+		if (otherSection.getSemester() != semester) {
+			throw new SemesterSectionMismatch("The section " + otherSection + "'s semester should match this semester " + semester + ", was " +  otherSection.getSemester());
+		}
 		for(Section currentSection : this.sections){
 			if(currentSection.hasSameSubject((otherSection))){
 				throw new DuplicateSectionException("Cannot enlist section "+otherSection+" because an existing section with the same subject already enlisted");
 			}
+			//also check if the schedules conflict
+			currentSection.checkScheduleConflict(otherSection);
 		}
-		
+				
 		prereqExists(otherSection);
-		
 		this.sections.add(otherSection);
 		
 	}
 	
+	//TODO for refactoring
 	private void prereqExists(Section otherSection){
 		for(Section currentSection : this.sections){
 			if(!currentSection.hasSameSubject(otherSection) ){
