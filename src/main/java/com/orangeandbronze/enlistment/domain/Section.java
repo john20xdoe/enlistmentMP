@@ -28,6 +28,32 @@ public class Section {
 		
 	}
 	
+	public boolean hasSameSection(Section otherSection){
+		if(this.subject.equals(otherSection.subject)){
+			return true;
+		}
+		return false;
+	}
+	//TODO: to be removedin
+	/*
+	public boolean hasPrereqSubject(Section otherSection){
+		if(otherSection.subject.hasPrerequisite()){
+			return true;
+		}
+		return false;
+	}*/
+	
+	public Subject getPrereqSubject(){
+		return this.subject.getPrerequisite();
+	}
+	
+	public boolean hasSameSubject(Section otherSection){
+		if(this.subject.equals(otherSection.subject)){
+			return true;
+		}
+		return false;
+	}
+	
 	public void checkConflict(Section section){
 		if(this.schedule.equals(section.schedule)){
 			throw new ScheduleConflictException("Attempt to enlist section with conflict");

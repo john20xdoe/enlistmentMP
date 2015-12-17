@@ -15,6 +15,39 @@ public class SemesterEnlistment {
 		this.semester=semester;
 	}
 
+	public void enlistSection(Section otherSection){
+		
+		for(Section currentSection : this.sections){
+			if(currentSection.hasSameSection(otherSection)){
+				throw new DuplicateSectionException("Cannot enlist section "+otherSection+" because an existing section with the same subject already enlisted");
+			}
+		}
+		
+		
+		boolean isValid = true;
+		
+		if(otherSection.getPrereqSubject() != null){
+			isValid = prereqExists(otherSection);
+		}
+		
+		if(isValid){
+			this.sections.add(otherSection);
+		}
+	}
+	
+	private boolean prereqExists(Section otherSection){
+		boolean prereqExists = false;
+//		if(otherSection.getPrereqSubject() != null){
+			for(Section currentSection : this.sections){
+				if(currentSection.hasSameSubject(otherSection) ){
+					prereqExists = true;
+					break;
+				}
+			}
+//		}
+		return prereqExists;
+	}
+	
 	@Override
 	public String toString() {
 		return semester + " " + sections ;
