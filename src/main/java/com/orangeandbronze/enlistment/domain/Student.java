@@ -2,7 +2,6 @@ package com.orangeandbronze.enlistment.domain;
 
 import java.util.*;
 
-
 import static org.apache.commons.lang3.Validate.*;
 
 public class Student {
