@@ -2,7 +2,6 @@ package com.orangeandbronze.enlistment.domain;
 
 import java.util.*;
 
-
 import static org.apache.commons.lang3.Validate.*;
 
 public class Student {
@@ -23,7 +22,7 @@ public class Student {
 		
 		if(newSemesterEnlistment.hasPrereqSubject()){
 			Collection<SemesterEnlistment> previousSemesterEnlistments = 
-					collectPreviousSemeterPrior(newSemesterEnlistment);
+					collectPreviousSemesterPrior(newSemesterEnlistment);
 			
 			Collection<Subject> prereqSubjects = newSemesterEnlistment.collectPrereqSubjects();
 			
@@ -43,7 +42,7 @@ public class Student {
 		this.semesterEnlistment.add(newSemesterEnlistment);
 	}
 	
-	private Collection<SemesterEnlistment> collectPreviousSemeterPrior(SemesterEnlistment newSemesterEnlistment){
+	private Collection<SemesterEnlistment> collectPreviousSemesterPrior(SemesterEnlistment newSemesterEnlistment){
 		Collection<SemesterEnlistment> semEnlistments = new HashSet<>(this.semesterEnlistment);
 		Collection<SemesterEnlistment> previousSemEnlistments = new HashSet<>();
 		

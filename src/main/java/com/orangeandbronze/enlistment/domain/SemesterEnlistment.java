@@ -31,18 +31,8 @@ public class SemesterEnlistment {
 			currentSection.checkScheduleConflict(otherSection);
 		}
 				
-		prereqExists(otherSection);
 		this.sections.add(otherSection);
 		
-	}
-	
-	//TODO for refactoring
-	private void prereqExists(Section otherSection){
-		for(Section currentSection : this.sections){
-			if(!currentSection.hasSameSubject(otherSection) ){
-				throw new PrerequisiteSubjectNotFoundException("Cannot enlist section "+otherSection+" because prequisite subject is not found ");
-			}
-		}
 	}
 	
 	public boolean prereqExists(Collection<Subject> subjectsWithPrereq){
@@ -96,6 +86,7 @@ public class SemesterEnlistment {
 				}
 			}
 		}
+		
 		return matchingSubjects;
 	}
 	
