@@ -35,19 +35,6 @@ public class SemesterEnlistment {
 		
 	}
 	
-	public boolean prereqExists(Collection<Subject> subjectsWithPrereq){
-		boolean status = false;
-		
-		for(Section currentSection : this.sections){
-			for(Subject prereqSubject :subjectsWithPrereq){
-				if(currentSection.hasSameSubject(prereqSubject)){
-						
-				}
-			}
-		}
-		return status;
-	}
-	
 	public boolean hasPrereqSubject(SemesterEnlistment semesterEnlistment){
 		for(Section section : semesterEnlistment.sections){
 			if(section.hasPrereqSubject()){

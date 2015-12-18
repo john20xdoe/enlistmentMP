@@ -68,5 +68,36 @@ public class StudentTest {
 		
 		assertFalse(barack.wasMemberOf(sec2));
 	}
+	
+	@Test(expected = PrerequisiteSubjectNotFoundException.class)
+	public void testSemesterEnlismentPrereqNotFound(){
+		
+		Student student = new Student(123);
+		
+		Semester semester1 = new Semester(2014, SemType.FIRST);
+		SemesterEnlistment semesterEnlistment1 = new SemesterEnlistment(semester1);
+		
+		Schedule schedule1 = new Schedule(Days.MTH, Period.H0830_1000);
+		Schedule schedule2 = new Schedule(Days.TF, Period.H0830_1000);
+		Room room1 = new Room("Room1", 5);
+		Section section1 = new Section("AAA111",semester1,schedule1,room1,Subject.SCI101);
+		Section section2 = new Section("AAA222",semester1,schedule2,room1,Subject.ENG101);
+		semesterEnlistment1.enlistSection(section1);
+		semesterEnlistment1.enlistSection(section2);
+		
+		Semester semester2 = new Semester(2015, SemType.FIRST);
+		SemesterEnlistment semesterEnlistment2 = new SemesterEnlistment(semester2);
+		
+		Schedule schedule3 = new Schedule(Days.MTH, Period.H0830_1000);
+		Schedule schedule4 = new Schedule(Days.TF, Period.H0830_1000);
+		Room room2 = new Room("Room1", 5);
+		Section section3 = new Section("BBB111",semester2,schedule3,room2,Subject.POLSCI102);
+		Section section4 = new Section("BBB222",semester2,schedule4,room2,Subject.ENG202);
+		semesterEnlistment2.enlistSection(section3);
+		semesterEnlistment2.enlistSection(section4);
+		
+		student.enlist(semesterEnlistment1);
+		student.enlist(semesterEnlistment2);
+	}
 
 }

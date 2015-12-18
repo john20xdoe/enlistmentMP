@@ -71,8 +71,8 @@ public class SemesterEnlistmentTest {
 		Schedule schedule3 = new Schedule(Days.MTH, Period.H0830_1000);
 		Schedule schedule4 = new Schedule(Days.TF, Period.H0830_1000);
 		Room room2 = new Room("Room1", 5);
-		Section section3 = new Section("AAA111",semester2,schedule3,room2,Subject.SCI101);
-		Section section4 = new Section("AAA222",semester2,schedule4,room2,Subject.ENG101);
+		Section section3 = new Section("BBB111",semester2,schedule3,room2,Subject.SCI101);
+		Section section4 = new Section("BBB222",semester2,schedule4,room2,Subject.ENG101);
 		semesterEnlistment2.enlistSection(section3);
 		semesterEnlistment2.enlistSection(section4);
 	}
