@@ -1,8 +1,5 @@
 package com.orangeandbronze.enlistment.service;
 
-import java.util.Collection;
-
-
 import com.orangeandbronze.enlistment.dao.*;
 import com.orangeandbronze.enlistment.domain.*;
 
@@ -15,10 +12,10 @@ public class EnlistService {
 		Section section = sectionDao.findBySectionId(sectionId);
 		Student student = studentDao.findByStudentId(studentNo);
 		
-		Collection<SemesterEnlistment> semesterEnlistment = student.getSemesterEnlistment();
-		for(SemesterEnlistment semEnlist : semesterEnlistment) {
-			semEnlist.enlistSection(section);
-		}
+		Semester semester = new Semester(2015, SemesterType.FIRST);
+		SemesterEnlistment semesterEnlistment = new SemesterEnlistment(semester);
+		semesterEnlistment.enlistSection(section);
+		student.enlist(semesterEnlistment);
 		studentDao.save(student);
 	}
 
@@ -28,7 +25,5 @@ public class EnlistService {
 
 	public void setStudentDao(StudentDAO studentDao) {
 		this.studentDao = studentDao;
-	}
-	
-	
+	}	
 }
