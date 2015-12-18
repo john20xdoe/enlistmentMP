@@ -24,6 +24,9 @@ public class Room {
 	public boolean isAtMax(int currentOccupants){
 		return currentOccupants >= maxCapacity; 
 	}
+	public int getMaxCapacity(){
+		return maxCapacity;
+	}
 
 	@Override
 	public String toString() {
