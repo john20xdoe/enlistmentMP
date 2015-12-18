@@ -11,12 +11,12 @@ public class EnlistService {
 	public void enlist(int studentNo, String sectionId) {
 		Section section = sectionDao.findBySectionId(sectionId);
 		Student student = studentDao.findByStudentId(studentNo);
-		
-		Semester semester = new Semester(2015, SemesterType.FIRST);
-		SemesterEnlistment semesterEnlistment = new SemesterEnlistment(semester);
-		semesterEnlistment.enlistSection(section);
-		student.enlist(semesterEnlistment);
+		student.enlist(section);
 		studentDao.save(student);
+	}
+
+	public SectionDAO getSectionDao() {
+		return sectionDao;
 	}
 
 	public void setSectionDao(SectionDAO sectionDao) {

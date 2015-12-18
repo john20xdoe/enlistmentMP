@@ -17,10 +17,31 @@ public class Student {
 		this.studentNumber = studentNumber;
 	}
 	
+	//TODO: To be refactored - not used
 	public void enlist(SemesterEnlistment newSemesterEnlistment){
 		notNull(newSemesterEnlistment);
 		hasTakenPrerequisite(newSemesterEnlistment);
 		this.semesterEnlistment.add(newSemesterEnlistment);
+	}
+	
+	public void enlist(Section section){
+		Collection<SemesterEnlistment> semesterEnlistmentCopy = new HashSet<>();
+		semesterEnlistment.addAll(this.semesterEnlistment);
+		notNull(section);
+		boolean foundSemEnlist = false;
+		for(SemesterEnlistment semEnlist : semesterEnlistmentCopy){
+			if(semEnlist.getSemester().equals(section.getSemester())){
+				foundSemEnlist = true;
+				semEnlist.enlistSection(section);
+			}
+		}
+		
+		if(!foundSemEnlist){
+			SemesterEnlistment newSemEnlist = new SemesterEnlistment(section.getSemester());
+			newSemEnlist.enlistSection(section);
+			hasTakenPrerequisite(newSemEnlist);
+			this.semesterEnlistment.add(newSemEnlist);
+		}
 	}
 	
 	private void hasTakenPrerequisite(SemesterEnlistment newSemesterEnlistment){

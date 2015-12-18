@@ -101,7 +101,7 @@ public class StudentTest {
 	}
 
 	@Test(expected=DuplicateSectionException.class)
-	public void checkIfStudentEnlistToSameSectionShouldFail(){		
+	public void checkIfStudentEnlistToSameSectionShouldThrowException(){		
 		Semester sem2015 = new Semester(2015,SemesterType.FIRST);
 		Schedule schedMTH = new Schedule(Days.MTH,Period.H0830_1000);		
 
@@ -113,8 +113,36 @@ public class StudentTest {
 		SemesterEnlistment sm = new SemesterEnlistment(sem2015);
 		sm.enlistSection(sec1);
 		sm.enlistSection(sec2);  //should throw DuplicateSectionException here
-		//Student barack = new Student(100);
-		//barack.enlist(sm);
+		Student barack = new Student(100);
+		barack.enlist(sec2);
+		assertFalse(barack.wasMemberOf(sec2));
 	}
 	
+	@Test
+	public void checkIfStudentEnlistToSameSectionShouldPass(){		
+		Semester sem2015 = new Semester(2015,SemesterType.FIRST);
+		Schedule schedMTH = new Schedule(Days.MTH,Period.H0830_1000);		
+
+		Subject polsci1 = Subject.POLSCI101;
+		Room room1 = new Room("GALIUS",1);
+		Section sec1 = new Section("BSCS1A", sem2015, schedMTH,room1,polsci1);
+		Section sec2 = new Section("BSCS1A", sem2015, schedMTH,room1,polsci1);
+		Student barack = new Student(100);
+		barack.enlist(sec2);
+		assertTrue(barack.wasMemberOf(sec2));
+	}
+	
+	@Test
+	public void checkIfStudentEnlistToSameSectionShouldFail(){		
+		Semester sem2015 = new Semester(2015,SemesterType.FIRST);
+		Schedule schedMTH = new Schedule(Days.MTH,Period.H0830_1000);		
+
+		Subject polsci1 = Subject.POLSCI101;
+		Room room1 = new Room("GALIUS",1);
+		Section sec1 = new Section("BSCS1A", sem2015, schedMTH,room1,polsci1);
+		Section sec2 = new Section("BSCS1A", sem2015, schedMTH,room1,polsci1);
+		Student barack = new Student(100);
+		barack.enlist(sec2);
+		assertFalse(barack.wasMemberOf(sec1));
+	}
 }
