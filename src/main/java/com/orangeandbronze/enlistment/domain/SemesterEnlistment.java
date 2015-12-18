@@ -42,17 +42,14 @@ public class SemesterEnlistment {
 	
 	//TODO: Remove duplicate codes
 	public boolean hasPrereqSubject(SemesterEnlistment semesterEnlistment){
-		Collection<Section> sectionsCopy = new HashSet<>(semesterEnlistment.sections);
-		for(Section section : sectionsCopy){
-			if(section.hasPrereqSubject()){
-				return section.hasPrereqSubject();
-			}
-		}
-		return false;
+		return matchEnlistmentsPrereqs(new HashSet<>(semesterEnlistment.sections));
 	}
 	
 	public boolean hasPrereqSubject(){
-		Collection<Section> sectionsCopy = new HashSet<>(this.sections);
+		return matchEnlistmentsPrereqs(new HashSet<>(this.sections));
+	}
+	
+	private boolean matchEnlistmentsPrereqs(Collection<Section> sectionsCopy){
 		for(Section section : sectionsCopy){
 			if(section.hasPrereqSubject()){
 				return true;
@@ -60,6 +57,7 @@ public class SemesterEnlistment {
 		}
 		return false;
 	}
+	
 	
 	public Collection<Subject> collectPrereqSubjects(){
 		Collection<Section> sectionsCopy = new HashSet<>(this.sections);
@@ -81,8 +79,7 @@ public class SemesterEnlistment {
 					matchingSubjects.add(otherSubject);
 				}
 			}
-		}
-		
+		}		
 		return matchingSubjects;
 	}
 	
