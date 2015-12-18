@@ -28,7 +28,20 @@ public class EnlistServiceTest {
 		final Section section1 = new Section(sectionId, semTest, schedTest, roomTest, Subject.ENG101);
 		when(sectionDao.findBySectionId(sectionId)).thenReturn(section1);
 		sectionDao.save(section1);
-		
+		assertEquals("AAA111", section1.toString());
+		verify(sectionDao).save(section1);
+
+	}
+    
+    @Test
+    public void enlistSecondTry() {
+    	SectionDAO sectionDao = mock(SectionDAO.class);
+    	StudentDAO studentDao = mock(StudentDAO.class);
+    	 	
+    	EnlistService service = new EnlistService();
+    	service.setSectionDao(sectionDao);
+    	service.setStudentDao(studentDao);
+    	
 		final String sectionId2 = "BBB222";
 		final Semester semTest2 = new Semester(2015, SemesterType.SECOND);
 		final Schedule schedTest2 = new Schedule(Days.MTH, Period.H1600_1730);
@@ -38,9 +51,7 @@ public class EnlistServiceTest {
 		sectionDao.save(section2);
 		
 		assertEquals("BBB222", section2.toString());
-		assertEquals("AAA111", section1.toString());
-	
-		verify(sectionDao).save(section1);
+
 		verify(sectionDao).save(section2);
 	}
 }
