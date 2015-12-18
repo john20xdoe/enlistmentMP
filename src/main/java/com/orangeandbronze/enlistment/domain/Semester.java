@@ -4,12 +4,13 @@ import static org.apache.commons.lang3.Validate.*;
 
 public class  Semester {
 	private final Integer academicYear;
-	private final SemType sem;
+	private final SemesterType sem;
 	
-	public Semester(Integer academicYear, SemType sem){
+	public Semester(Integer academicYear, SemesterType sem){
+		final int yearLimit = 9999;
 		notNull(academicYear);
 		notNull(sem);
-		if (academicYear > 9999) {
+		if (academicYear > yearLimit || academicYear <= 0) {
 			throw new IllegalArgumentException("academicYear should be 4 digits or less, was "+ academicYear);
 		}
 		this.academicYear = academicYear;
@@ -17,16 +18,13 @@ public class  Semester {
 	}
 	
 	public boolean isPrevious(Semester otherSemester){
-		if(this.academicYear < otherSemester.academicYear){
-			return true;
-			
-		} else if(this.academicYear.equals(otherSemester.academicYear)){
-			
-			if(this.sem.isPreviousSem(otherSemester.sem)){
-				return true;
-			}
+		
+		if(this.academicYear.equals(otherSemester.academicYear)){
+			return this.sem.isPreviousSem(otherSemester.sem);
 		}
-		return false;
+		else{
+			return this.academicYear < otherSemester.academicYear;
+		}
 	}
 
 	@Override

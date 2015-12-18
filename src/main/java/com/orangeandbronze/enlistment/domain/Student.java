@@ -19,7 +19,11 @@ public class Student {
 	
 	public void enlist(SemesterEnlistment newSemesterEnlistment){
 		notNull(newSemesterEnlistment);
-		
+		hasTakenPrerequisite(newSemesterEnlistment);
+		this.semesterEnlistment.add(newSemesterEnlistment);
+	}
+	
+	private void hasTakenPrerequisite(SemesterEnlistment newSemesterEnlistment){
 		if(newSemesterEnlistment.hasPrereqSubject()){
 			Collection<SemesterEnlistment> previousSemesterEnlistments = 
 					collectPreviousSemesterPrior(newSemesterEnlistment);
@@ -31,15 +35,13 @@ public class Student {
 			for(SemesterEnlistment semesterEnlistment : previousSemesterEnlistments){
 				matchedSubjects.addAll(semesterEnlistment.getMatchingSubjects(prereqSubjects));
 			}
-			
+			//TODO: for improvement Specify specific subjects with prereq with sections
 			for(Subject prereqSubject : prereqSubjects){
 				if(!matchedSubjects.contains(prereqSubject)){
 					throw new PrerequisiteSubjectNotFoundException("Prequisite subjects "+prereqSubjects+" must be taken first before enlisting new section");
 				}
 			}
 		}
-		
-		this.semesterEnlistment.add(newSemesterEnlistment);
 	}
 	
 	private Collection<SemesterEnlistment> collectPreviousSemesterPrior(SemesterEnlistment newSemesterEnlistment){
@@ -62,7 +64,8 @@ public class Student {
 	public boolean wasMemberOf(Section section){
 		for (SemesterEnlistment enlistments : semesterEnlistment){
 			for (Section sectionFromEnlistment : enlistments.getSections()){
-				if (section == sectionFromEnlistment) return true;
+				if (section == sectionFromEnlistment) 
+					return true;
 			}
 		}
 		return false;

@@ -8,8 +8,6 @@ public class SemesterEnlistment {
 	private final Semester semester;
 	private  Collection<Section> sections = new HashSet<>();
 	
-	// TODO validation of taking a subject together with its prereq
-	
 	public SemesterEnlistment(Semester semester) {
 		notNull(semester);
 		this.semester=semester;
@@ -20,23 +18,42 @@ public class SemesterEnlistment {
 	}
 
 	public void enlistSection(Section otherSection){
+		
 		if (otherSection.getSemester() != semester) {
 			throw new SemesterSectionMismatch("The section " + otherSection + "'s semester should match this semester " + semester + ", was " +  otherSection.getSemester());
 		}
-		for(Section currentSection : this.sections){
-			if(currentSection.hasSameSubject((otherSection))){
-				throw new DuplicateSectionException("Cannot enlist section "+otherSection+" because an existing section with the same subject already enlisted");
-			}
-			//also check if the schedules conflict
-			currentSection.checkScheduleConflict(otherSection);
-		}
 				
+		validateSectionConflicts(otherSection);
+		
 		this.sections.add(otherSection);
 		
 	}
 	
+	private void validateSectionConflicts(Section otherSection){
+		Collection<Section> sectionsCopy = new HashSet<>(sections);
+		for(Section currentSection : sectionsCopy){
+			if(currentSection.hasSameSubject((otherSection))){
+				throw new DuplicateSectionException("Cannot enlist section "+otherSection+" because an existing section with the same subject "+otherSection.getSubject()+" was already enlisted");
+			}
+			
+			currentSection.checkScheduleConflict(otherSection);
+		}
+	}
+	
+	//TODO: Remove duplicate codes
 	public boolean hasPrereqSubject(SemesterEnlistment semesterEnlistment){
-		for(Section section : semesterEnlistment.sections){
+		Collection<Section> sectionsCopy = new HashSet<>(semesterEnlistment.sections);
+		for(Section section : sectionsCopy){
+			if(section.hasPrereqSubject()){
+				return section.hasPrereqSubject();
+			}
+		}
+		return false;
+	}
+	
+	public boolean hasPrereqSubject(){
+		Collection<Section> sectionsCopy = new HashSet<>(this.sections);
+		for(Section section : sectionsCopy){
 			if(section.hasPrereqSubject()){
 				return true;
 			}
@@ -45,23 +62,15 @@ public class SemesterEnlistment {
 	}
 	
 	public Collection<Subject> collectPrereqSubjects(){
+		Collection<Section> sectionsCopy = new HashSet<>(this.sections);
 		Collection<Subject> prereqSubjects = new HashSet<>();
-		for(Section section : this.sections){
+		for(Section section : sectionsCopy){
 			if(section.hasPrereqSubject()){
 				prereqSubjects.add(section.getPrereqSubject());
 			}
 		}
 		return prereqSubjects;
 	}
-	
-	public boolean hasPrereqSubject(){
-		for(Section section : this.sections){
-			if(section.hasPrereqSubject()){
-				return true;
-			}
-		}
-		return false;
-	} 
 	
 	public Collection<Subject> getMatchingSubjects(Collection<Subject> prereqSubjects){
 		Collection<Subject> preqSubjectCopy = new HashSet<>(prereqSubjects);

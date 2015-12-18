@@ -8,7 +8,7 @@ public class SectionTest {
 
 	@Test
 	public void verifyEqualsShouldBeEqualIfSameAssigned(){
-		Semester sem2015 = new Semester(2015,SemType.FIRST);
+		Semester sem2015 = new Semester(2015,SemesterType.FIRST);
 		Schedule schedMTH = new Schedule(Days.MTH,Period.H0830_1000);		
 
 		Subject polsci1 = Subject.POLSCI101;
@@ -20,7 +20,7 @@ public class SectionTest {
 	
 	@Test
 	public void verifyEqualsShouldNotBeEqualIfInstantiated(){
-		Semester sem2015 = new Semester(2015,SemType.FIRST);
+		Semester sem2015 = new Semester(2015,SemesterType.FIRST);
 		Schedule schedMTH = new Schedule(Days.MTH,Period.H0830_1000);		
 
 		Subject polsci1 = Subject.POLSCI101;

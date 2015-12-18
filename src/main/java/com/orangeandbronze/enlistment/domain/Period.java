@@ -23,12 +23,7 @@ public enum Period{
 	}
 	
 	public boolean conflictsWith(Period other){
-		//option 1: this will mark schedules that start right after the other as conflicts e.g. 08:00-10:00 and 10:00-11:00 NO CONFLICTS
-		/* return (this.fromTime >= other.fromTime && this.fromTime<= other.toTime) ||
-                (other.fromTime >= this.fromTime&& other.fromTime <= this.toTime); 
-        */
 		
-		//option 2: this allows schedules that start after the other to not conflict e.g. 08:00-10:00 and 10:00-11:00 NO CONFLICT
 		return (this.fromTime > other.fromTime && this.fromTime< other.toTime) ||
                 (other.fromTime > this.fromTime&& other.fromTime < this.toTime);
 	}

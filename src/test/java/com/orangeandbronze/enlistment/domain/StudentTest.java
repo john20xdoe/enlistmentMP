@@ -36,7 +36,7 @@ public class StudentTest {
 	public void checkIfStudentIsMemberOfASectionShouldBeOK(){		
 		Subject polsci1 = Subject.POLSCI101;
 		Room room1 = new Room("GALIUS",1);
-		Semester sem2015 = new Semester(2015,SemType.FIRST);
+		Semester sem2015 = new Semester(2015,SemesterType.FIRST);
 		Schedule schedMTH = new Schedule(Days.MTH,Period.H0830_1000);
 		Section sec1 = new Section("BSCS1A", sem2015, schedMTH,room1,polsci1);
 
@@ -50,7 +50,7 @@ public class StudentTest {
 	
 	@Test
 	public void checkIfStudentIsMemberOfASectionShouldFail(){		
-		Semester sem2015 = new Semester(2015,SemType.FIRST);
+		Semester sem2015 = new Semester(2015,SemesterType.FIRST);
 		Schedule schedMTH = new Schedule(Days.MTH,Period.H0830_1000);		
 
 		Subject polsci1 = Subject.POLSCI101;
@@ -74,7 +74,7 @@ public class StudentTest {
 		
 		Student student = new Student(123);
 		
-		Semester semester1 = new Semester(2014, SemType.FIRST);
+		Semester semester1 = new Semester(2014, SemesterType.FIRST);
 		SemesterEnlistment semesterEnlistment1 = new SemesterEnlistment(semester1);
 		
 		Schedule schedule1 = new Schedule(Days.MTH, Period.H0830_1000);
@@ -85,7 +85,7 @@ public class StudentTest {
 		semesterEnlistment1.enlistSection(section1);
 		semesterEnlistment1.enlistSection(section2);
 		
-		Semester semester2 = new Semester(2015, SemType.FIRST);
+		Semester semester2 = new Semester(2015, SemesterType.FIRST);
 		SemesterEnlistment semesterEnlistment2 = new SemesterEnlistment(semester2);
 		
 		Schedule schedule3 = new Schedule(Days.MTH, Period.H0830_1000);
@@ -102,7 +102,7 @@ public class StudentTest {
 
 	@Test(expected=DuplicateSectionException.class)
 	public void checkIfStudentEnlistToSameSectionShouldFail(){		
-		Semester sem2015 = new Semester(2015,SemType.FIRST);
+		Semester sem2015 = new Semester(2015,SemesterType.FIRST);
 		Schedule schedMTH = new Schedule(Days.MTH,Period.H0830_1000);		
 
 		Subject polsci1 = Subject.POLSCI101;
