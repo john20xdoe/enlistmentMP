@@ -43,13 +43,6 @@ public class Section {
 		return false;
 	}
 	
-	// TODO: to be removedin
-	/*
-	 * public boolean hasPrereqSubject(Section otherSection){
-	 * if(otherSection.subject.hasPrerequisite()){ return true; } return false;
-	 * }
-	 */
-
 	public Subject getPrereqSubject() {
 		return this.subject.getPrerequisite();
 	}
@@ -61,20 +54,13 @@ public class Section {
 		return false;
 	}
 
-
-	/*
-	 * public boolean hasSameSubject(Section otherSection){
-	 * if(this.subject.equals(otherSection.subject)){ return true; } return
-	 * false; }
-	 */
-
 	public void checkScheduleConflict(Section section) {
 		if (this.semester == section.getSemester()) {
 			if (this.schedule.equals(section.schedule)) {
 				throw new ScheduleConflictException("Schedule for " + this + " [" + schedule + "] conflicts with "
 						+ section + "[" + section.schedule + "]");
 			}
-		} // TODO add else ? should we throw Exception if not the same sem; nachecheck na kasi before icall to
+		} //add else ? should we throw Exception if not the same sem; nachecheck na kasi before icall to
 	}
 
 	public void isRoomFull() {
@@ -87,6 +73,7 @@ public class Section {
 	public String toString() {
 		return sectionId;
 	}
+	
 	
 	
 }

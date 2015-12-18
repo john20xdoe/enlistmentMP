@@ -1,11 +1,9 @@
 package com.orangeandbronze.enlistment.domain;
 
 public enum SemType {
-	FIRST(1),SECOND(2);
-	
-	
+	FIRST(1), SECOND(2), THIRD(3);
+		
 	private int semValue;
-	
 	
 	SemType(int semValue){
 		this.semValue = semValue;
