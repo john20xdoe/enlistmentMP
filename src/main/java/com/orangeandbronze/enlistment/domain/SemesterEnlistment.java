@@ -45,6 +45,65 @@ public class SemesterEnlistment {
 		}
 	}
 	
+	public boolean prereqExists(Collection<Subject> subjectsWithPrereq){
+		boolean status = false;
+		
+		for(Section currentSection : this.sections){
+			for(Subject prereqSubject :subjectsWithPrereq){
+				if(currentSection.hasSameSubject(prereqSubject)){
+						
+				}
+			}
+		}
+		return status;
+	}
+	
+	public boolean hasPrereqSubject(SemesterEnlistment semesterEnlistment){
+		for(Section section : semesterEnlistment.sections){
+			if(section.hasPrereqSubject()){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public Collection<Subject> collectPrereqSubjects(){
+		Collection<Subject> prereqSubjects = new HashSet<>();
+		for(Section section : this.sections){
+			if(section.hasPrereqSubject()){
+				prereqSubjects.add(section.getPrereqSubject());
+			}
+		}
+		return prereqSubjects;
+	}
+	
+	public boolean hasPrereqSubject(){
+		for(Section section : this.sections){
+			if(section.hasPrereqSubject()){
+				return true;
+			}
+		}
+		return false;
+	} 
+	
+	public Collection<Subject> getMatchingSubjects(Collection<Subject> prereqSubjects){
+		Collection<Subject> preqSubjectCopy = new HashSet<>(prereqSubjects);
+		Collection<Subject> matchingSubjects = new HashSet<>();
+		for(Section section : this.sections){
+			for(Subject otherSubject : preqSubjectCopy){
+				if(section.hasSameSubject(otherSubject)){
+					matchingSubjects.add(otherSubject);
+				}
+			}
+		}
+		return matchingSubjects;
+	}
+	
+
+	public Semester getSemester(){
+		return this.semester;
+	}
+	
 	@Override
 	public String toString() {
 		return semester + " " + sections ;

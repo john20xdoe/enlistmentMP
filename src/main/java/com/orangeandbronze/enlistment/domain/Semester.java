@@ -15,6 +15,19 @@ public class  Semester {
 		this.academicYear = academicYear;
 		this.sem = sem;
 	}
+	
+	public boolean isPrevious(Semester otherSemester){
+		if(this.academicYear < otherSemester.academicYear){
+			return true;
+			
+		} else if(this.academicYear.equals(otherSemester.academicYear)){
+			
+			if(this.sem.isPreviousSem(otherSemester.sem)){
+				return true;
+			}
+		}
+		return false;
+	}
 
 	@Override
 	public String toString() {

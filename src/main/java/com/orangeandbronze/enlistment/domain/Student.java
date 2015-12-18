@@ -20,7 +20,40 @@ public class Student {
 	
 	public void enlist(SemesterEnlistment newSemesterEnlistment){
 		notNull(newSemesterEnlistment);
+		
+		if(newSemesterEnlistment.hasPrereqSubject()){
+			Collection<SemesterEnlistment> previousSemesterEnlistments = 
+					collectPreviousSemeterPrior(newSemesterEnlistment);
+			
+			Collection<Subject> prereqSubjects = newSemesterEnlistment.collectPrereqSubjects();
+			
+			Collection<Subject> matchedSubjects = new HashSet<>();
+			
+			for(SemesterEnlistment semesterEnlistment : previousSemesterEnlistments){
+				matchedSubjects.addAll(semesterEnlistment.getMatchingSubjects(prereqSubjects));
+			}
+			
+			for(Subject prereqSubject : prereqSubjects){
+				if(!matchedSubjects.contains(prereqSubject)){
+					throw new PrerequisiteSubjectNotFoundException("Prequisite subjects "+prereqSubjects+" must be taken first before enlisting new section");
+				}
+			}
+		}
+		
 		this.semesterEnlistment.add(newSemesterEnlistment);
+	}
+	
+	private Collection<SemesterEnlistment> collectPreviousSemeterPrior(SemesterEnlistment newSemesterEnlistment){
+		Collection<SemesterEnlistment> semEnlistments = new HashSet<>(this.semesterEnlistment);
+		Collection<SemesterEnlistment> previousSemEnlistments = new HashSet<>();
+		
+		for(SemesterEnlistment currentSemEnlist : semEnlistments){
+			if(currentSemEnlist.getSemester().isPrevious(newSemesterEnlistment.getSemester())){
+					previousSemEnlistments.add(currentSemEnlist);
+			}
+		}
+		
+		return previousSemEnlistments;
 	}
 	
 	public Collection<SemesterEnlistment> getSemesterEnlistment() {
