@@ -14,7 +14,7 @@ public class SemesterEnlistment {
 	}
 	
 	public Collection<Section> getSections(){
-		return new ArrayList<>(sections);  //defensive copy
+		return new ArrayList<>(sections);
 	}
 
 	public void enlistSection(Section otherSection){
