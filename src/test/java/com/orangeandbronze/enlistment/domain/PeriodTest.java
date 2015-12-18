@@ -1,7 +1,9 @@
 package com.orangeandbronze.enlistment.domain;
 
 import static org.junit.Assert.*;
+
 import com.orangeandbronze.enlistment.domain.Period;
+
 import org.junit.Test;
 
 public class PeriodTest {
