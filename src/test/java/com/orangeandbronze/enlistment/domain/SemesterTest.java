@@ -21,13 +21,42 @@ public class SemesterTest {
 	public void scheduleWithOKDayNullPeriod(){
 		Semester sem = new Semester(2010,null);
 	}
+	
 	@Test
 	public void hasInvalidYear4DigitsOrLess(){
 		Semester sem = new Semester(3020,SemType.FIRST);
 	}
+	
 	@Test(expected=IllegalArgumentException.class)
 	public void hasInvalidYearGreaterThan9999(){
 		Semester sem = new Semester(10000,SemType.FIRST);
+	}
+	
+	@Test
+	public void testNewSemesterIsPreviousWithSameAcademicYear(){
+		
+		Semester semester1 = new Semester(2014, SemType.FIRST);
+		Semester semester2 = new Semester(2014, SemType.SECOND);
+		
+		assertTrue(semester1.isPrevious(semester2));
+	}
+	
+	@Test
+	public void testNewSemesterIsPreviousWithDiffAcademicYear(){
+		
+		Semester semester1 = new Semester(2014, SemType.FIRST);
+		Semester semester2 = new Semester(2015, SemType.SECOND);
+		
+		assertTrue(semester1.isPrevious(semester2));
+	}
+	
+	@Test
+	public void testNewSemesterIsPreviousWithSameSemTypeButDiffYear(){
+		
+		Semester semester1 = new Semester(2014, SemType.FIRST);
+		Semester semester2 = new Semester(2015, SemType.FIRST);
+		
+		assertTrue(semester1.isPrevious(semester2));
 	}
 
 }

@@ -36,6 +36,13 @@ public class Section {
 		return (this.subject.equals(otherSection.subject));
 	}
 	
+	public boolean hasPrereqSubject(){
+		if(this.subject.hasPrerequisite()){
+			return true;
+		}
+		return false;
+	}
+	
 	// TODO: to be removedin
 	/*
 	 * public boolean hasPrereqSubject(Section otherSection){
@@ -46,6 +53,14 @@ public class Section {
 	public Subject getPrereqSubject() {
 		return this.subject.getPrerequisite();
 	}
+	
+	public boolean hasSameSubject(Subject otherSubject){
+		if(this.subject.equals(otherSubject)){
+			return true;
+		}
+		return false;
+	}
+
 
 	/*
 	 * public boolean hasSameSubject(Section otherSection){
